@@ -32,7 +32,7 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: const Color(0xFFF5F5FA),
       appBar: AppBar(
         elevation: 8,
-        backgroundColor: const Color(0xFF3D5AFE), 
+        backgroundColor: const Color(0xFF3D5AFE),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -64,66 +64,94 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-         
+            // Hero Section with Gradient and Animated Text
             Container(
               width: double.infinity,
-              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [Color(0xFF3D5AFE), Color(0xFF1E88E5)], 
+              padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 16),
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  colors: [Color(0xFF3D5AFE), Color(0xFF1E88E5)],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
-                borderRadius: BorderRadius.vertical(
+                borderRadius: const BorderRadius.vertical(
                   bottom: Radius.circular(30),
                 ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.blue.withOpacity(0.3),
+                    blurRadius: 20,
+                    spreadRadius: 5,
+                    offset: const Offset(0, 10),
+                  ),
+                ],
               ),
-              child: const Text(
-                'Find Your Next Favorite Book',
-                style: TextStyle(
+              child: AnimatedDefaultTextStyle(
+                duration: const Duration(milliseconds: 300),
+                style: const TextStyle(
                   color: Colors.white,
-                  fontSize: 20,
+                  fontSize: 24,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 0.8,
                 ),
-                textAlign: TextAlign.center,
+                child: const Text(
+                  'Find Your Next Favorite Book',
+                  textAlign: TextAlign.center,
+                ),
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 30),
 
+            // Recommended Section
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: const Text(
-                'Recommended For You',
-                style: TextStyle(
-                  fontSize: 22,
-                  color: Color(0xFF37474F),
-                  fontWeight: FontWeight.bold,
-                ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Recommended For You',
+                    style: TextStyle(
+                      fontSize: 22,
+                      color: Color(0xFF37474F),
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 0.5,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  ...books.map(
+                    (book) => Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      child: BookCard(
+                        book: book,
+                        cardColor: const Color(0xFFFFFFFF),
+                        borderColor: const Color(0xFFE0E0E0),
+                        shadowColor: const Color(0xFFB0BEC5),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-            const SizedBox(height: 10),
-            ...books.map(
-              (book) => Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                child: BookCard(
-                  book: book,
-                  cardColor: const Color(0xFFFFFFFF),
-                  borderColor: const Color(0xFFE0E0E0),
-                  shadowColor: const Color(0xFFB0BEC5), 
-                ),
-              ),
-            ),
-            const SizedBox(height: 20),
-    
+            const SizedBox(height: 30),
+
+            // Footer Section with Gradient and Decorative Text
             Container(
-              padding: const EdgeInsets.all(16),
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(
                   colors: [Color(0xFF3D5AFE), Color(0xFF1E88E5)],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                 ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.blue.withOpacity(0.3),
+                    blurRadius: 20,
+                    spreadRadius: 5,
+                    offset: const Offset(0, -10),
+                  ),
+                ],
               ),
               child: const Text(
                 'Ceylon Book Store - Dive into the world of stories.',
